@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: MF Internal Pages
-Plugin URI: 
+Plugin URI: https://github.com/frostkom/mf_internal_pages
 Description: 
-Version: 2.2.1
+Version: 2.2.2
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: http://martinfors.se
@@ -11,7 +11,7 @@ Text Domain: lang_int_page
 Domain Path: /lang
 
 Depends: Meta Box, MF Base
-GitHub Plugin URI:
+GitHub Plugin URI: frostkom/mf_internal_pages
 */
 
 if(is_admin())
