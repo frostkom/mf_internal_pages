@@ -141,7 +141,7 @@ class mf_internal_pages
 				$arr_groups[$post_id] = $post_title;
 			}
 
-			$arr_roles = get_all_roles(array('denied' => array('administrator')));
+			$arr_roles = get_all_roles(); //array('denied' => array('administrator'))
 		}
 
 		$meta_boxes[] = array(
