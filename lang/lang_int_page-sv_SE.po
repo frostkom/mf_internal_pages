@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MF User Role\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-23 12:20+0100\n"
+"POT-Creation-Date: 2018-05-02 14:39+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: Martin Fors\n"
@@ -28,7 +28,7 @@ msgid "Redirecting to %s"
 msgstr "Dirigerar om till %s"
 
 #: ../include/classes.php:149
-#: ../include/classes.php:375
+#: ../include/classes.php:220
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -57,7 +57,7 @@ msgid "Clipboard"
 msgstr "Urklipp"
 
 #: ../include/classes.php:176
-#: ../include/classes.php:363
+#: ../include/classes.php:208
 msgid "Dashboard"
 msgstr "Kontrollpanel"
 
@@ -86,63 +86,71 @@ msgid "Images"
 msgstr "Bilder"
 
 #: ../include/classes.php:183
+msgid "Key"
+msgstr "Nyckel"
+
+#: ../include/classes.php:184
 msgid "List"
 msgstr "Lista"
 
-#: ../include/classes.php:184
-#: ../include/classes.php:366
+#: ../include/classes.php:185
+#: ../include/classes.php:211
 msgid "Media"
 msgstr "Media"
 
-#: ../include/classes.php:185
+#: ../include/classes.php:186
 msgid "Megaphone"
 msgstr "Megafon"
 
-#: ../include/classes.php:186
+#: ../include/classes.php:187
 msgid "Plus"
 msgstr "Plus"
 
-#: ../include/classes.php:187
+#: ../include/classes.php:188
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../include/classes.php:188
+#: ../include/classes.php:189
+msgid "Tickets"
+msgstr "Biljetter"
+
+#: ../include/classes.php:190
 msgid "Warning"
 msgstr "Varning"
 
-#: ../include/classes.php:355
+#: ../include/classes.php:200
 msgid "Position"
 msgstr "Position"
 
-#: ../include/classes.php:365
+#: ../include/classes.php:210
 msgid "Posts"
 msgstr "Inlägg"
 
-#: ../include/classes.php:368
+#: ../include/classes.php:213
 msgid "Pages"
 msgstr "Sidor"
 
-#: ../include/classes.php:369
+#: ../include/classes.php:214
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: ../include/classes.php:371
+#: ../include/classes.php:216
 msgid "Appearance"
 msgstr "Utseende"
 
-#: ../include/classes.php:372
+#: ../include/classes.php:217
 msgid "Plugins"
 msgstr "Plugins"
 
-#: ../include/classes.php:373
+#: ../include/classes.php:218
 msgid "Users"
 msgstr "Användare"
 
-#: ../include/classes.php:374
+#: ../include/classes.php:219
 msgid "Tools"
 msgstr "Verktyg"
 
-#: ../include/classes.php:385
+#: ../include/classes.php:230
 msgid "External Link"
 msgstr "Extern länk"
 
