@@ -118,8 +118,10 @@ class mf_internal_pages
 				$post_content = sprintf(__("Redirecting to %s", 'lang_int_page'), "<a href='".$post_external_link."'>".$post_external_link."</a>")."&hellip;";
 			}
 
-			echo "<h1>".$post_title."</h1>"
-			.apply_filters('the_content', $post_content);
+			echo "<div class='wrap'>
+				<h1>".$post_title."</h1>"
+				.apply_filters('the_content', $post_content)
+			."</div>";
 		}
 	}
 
@@ -169,7 +171,7 @@ class mf_internal_pages
 					'id' => $this->meta_prefix.'icon',
 					'type' => 'select',
 					'options' => array(
-						'' => "-- ".__("Choose here", 'lang_int_page')." --",
+						'' => "-- ".__("Choose Here", 'lang_int_page')." --",
 						'dashicons-admin-site' => __("Admin", 'lang_int_page'),
 						'dashicons-cart' => __("Cart", 'lang_int_page'),
 						'dashicons-clipboard' => __("Clipboard", 'lang_int_page'),
@@ -271,7 +273,7 @@ class mf_internal_pages
 					}
 				}
 			break;
-			
+
 			case 'position':
 				$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
 
