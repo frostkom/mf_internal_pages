@@ -199,11 +199,11 @@ class mf_internal_pages
 						'dashicons-warning' => __("Warning", 'lang_int_page'),
 						/* https://developer.wordpress.org/resource/dashicons/ */
 					),
-					'attributes' => array(
+					/*'attributes' => array(
 						'condition_type' => 'show_this_if',
 						'condition_selector' => 'parent_id',
 						'condition_value' => '',
-					),
+					),*/
 				),
 				array(
 					'name'  => __("Position", 'lang_int_page'),
@@ -229,11 +229,11 @@ class mf_internal_pages
 						."<li>80 = ".__("Settings", 'lang_int_page')."</li>"
 						//."<li>99 = ".__("Separator", 'lang_int_page')."</li>"
 					."</ul>",
-					'attributes' => array(
+					/*'attributes' => array(
 						'condition_type' => 'show_this_if',
 						'condition_selector' => 'parent_id',
 						'condition_value' => '',
-					),
+					),*/
 				),
 				array(
 					'name' => __("External Link", 'lang_int_page'),
