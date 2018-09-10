@@ -3,7 +3,7 @@
 Plugin Name: MF Internal Pages
 Plugin URI: https://github.com/frostkom/mf_internal_pages
 Description: 
-Version: 2.2.11
+Version: 2.2.12
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -25,7 +25,7 @@ if(is_admin())
 
 	add_action('init', array($obj_internal_pages, 'init'));
 	add_action('admin_menu', array($obj_internal_pages, 'admin_menu'));
-	add_action('rwmb_meta_boxes', array($obj_internal_pages, 'meta_boxes'));
+	add_action('rwmb_meta_boxes', array($obj_internal_pages, 'rwmb_meta_boxes'));
 
 	add_filter('manage_int_page_posts_columns', array($obj_internal_pages, 'column_header'), 5);
 	add_action('manage_int_page_posts_custom_column', array($obj_internal_pages, 'column_cell'), 5, 2);
