@@ -288,7 +288,7 @@ class mf_internal_pages
 			/*case 'show_in_menu':
 				$post_meta = get_post_meta($id, $this->meta_prefix.'show_in_menu', true);
 
-				echo "<i class='".($post_meta == "yes" ? "fa fa-check green" : "fa fa-close red")." fa-lg'></i>";
+				echo "<i class='".($post_meta == "yes" ? "fa fa-check green" : "fa fa-times red")." fa-lg'></i>";
 			break;*/
 		}
 	}
