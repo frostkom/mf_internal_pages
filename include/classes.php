@@ -211,7 +211,7 @@ class mf_internal_pages
 					'type' => 'number',
 					'attributes' => array(
 						'min' => 0,
-						'max' => 120,
+						'max' => 140,
 					),
 					'desc' => "<ul>"
 						."<li>2 = ".__("Dashboard", 'lang_int_page')."</li>"
