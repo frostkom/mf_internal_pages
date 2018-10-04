@@ -196,6 +196,7 @@ class mf_internal_pages
 						'dashicons-admin-generic' => __("Settings", 'lang_int_page')." (".__("Default", 'lang_int_page').")",
 						'dashicons-tickets' => __("Tickets", 'lang_int_page'),
 						'dashicons-unlock' => __("Unlock", 'lang_int_page'),
+						'dashicons-video-alt3' => __("Video", 'lang_int_page'),
 						'dashicons-warning' => __("Warning", 'lang_int_page'),
 						/* https://developer.wordpress.org/resource/dashicons/ */
 					),
