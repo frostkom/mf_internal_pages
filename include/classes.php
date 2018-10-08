@@ -165,6 +165,9 @@ class mf_internal_pages
 					'type' => 'select',
 					'options' => $arr_roles,
 					'multiple' => true,
+					'attributes' => array(
+						'size' => get_select_size(array('count' => count($arr_roles))),
+					),
 				),
 				array(
 					'name'  => __("Icon", 'lang_int_page'),
