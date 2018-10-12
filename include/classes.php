@@ -162,7 +162,7 @@ class mf_internal_pages
 				array(
 					'name'  => __("Roles", 'lang_int_page'),
 					'id' => $this->meta_prefix.'roles',
-					'type' => 'select',
+					'type' => 'select3',
 					'options' => $arr_roles,
 					'multiple' => true,
 					'attributes' => array(
