@@ -189,7 +189,7 @@ class mf_internal_pages
 						'dashicons-admin-network' => __("Key", 'lang_int_page'),
 						'dashicons-list-view' => __("List", 'lang_int_page'),
 						'dashicons-lock' => __("Lock", 'lang_int_page'),
-						'dashicons-media-default' => __("Media", 'lang_int_page'),
+						'dashicons-admin-media' => __("Media", 'lang_int_page'),
 						'dashicons-megaphone' => __("Megaphone", 'lang_int_page'),
 						'dashicons-networking' => __("Network", 'lang_int_page'),
 						'dashicons-controls-play' => __("Play", 'lang_int_page'),
