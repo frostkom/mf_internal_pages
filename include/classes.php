@@ -52,45 +52,38 @@ class mf_internal_pages
 			$post_name = $r->post_name;
 			$post_title = $r->post_title;
 
-			/*$post_show_in_menu = get_post_meta($post_id, $this->meta_prefix.'show_in_menu', true);
+			$post_roles = get_post_meta($post_id, $this->meta_prefix.'roles');
 
-			if($post_show_in_menu == 'yes')
-			{*/
-				$post_roles = get_post_meta($post_id, $this->meta_prefix.'roles');
+			if(count($post_roles) == 0 || in_array($profile_role, $post_roles)) //IS_ADMIN || 
+			{
+				$post_icon = get_post_meta($post_id, $this->meta_prefix.'icon', true);
+				$post_position = get_post_meta($post_id, $this->meta_prefix.'position', true);
 
-				if(IS_ADMIN || count($post_roles) == 0 || in_array($profile_role, $post_roles))
+				$menu_start = "int_page_".$post_name;
+
+				add_menu_page($post_title, $post_title, 'read', $menu_start, array($this, 'admin_menu_pages'), $post_icon, ($post_position != '' ? $post_position : 100));
+
+				$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = 'int_page' AND post_parent = %d AND post_status = 'publish' ORDER BY menu_order ASC", $post_id));
+
+				if($wpdb->num_rows > 0)
 				{
-					$post_icon = get_post_meta($post_id, $this->meta_prefix.'icon', true);
-					$post_position = get_post_meta($post_id, $this->meta_prefix.'position', true);
-
-					$menu_start = "int_page_".$post_name;
-
-					add_menu_page($post_title, $post_title, 'read', $menu_start, array($this, 'admin_menu_pages'), $post_icon, ($post_position != '' ? $post_position : 100));
-
-					$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = 'int_page' AND post_parent = %d AND post_status = 'publish' ORDER BY menu_order ASC", $post_id));
-
 					foreach($result2 as $r)
 					{
 						$post_id = $r->ID;
 						$post_name = $r->post_name;
 						$post_title = $r->post_title;
 
-						/*$post_show_in_menu = get_post_meta($post_id, $this->meta_prefix.'show_in_menu', true);
+						$post_roles = get_post_meta($post_id, $this->meta_prefix.'roles');
 
-						if($post_show_in_menu == 'yes')
-						{*/
-							$post_roles = get_post_meta($post_id, $this->meta_prefix.'roles');
+						if(count($post_roles) == 0 || in_array($profile_role, $post_roles)) //IS_ADMIN || 
+						{
+							$menu_page = "int_page_".$post_name;
 
-							if(IS_ADMIN || count($post_roles) == 0 || in_array($profile_role, $post_roles))
-							{
-								$menu_page = "int_page_".$post_name;
-
-								add_submenu_page($menu_start, $post_title, $post_title, 'read', $menu_page, array($this, 'admin_menu_pages'));
-							}
-						//}
+							add_submenu_page($menu_start, $post_title, $post_title, 'read', $menu_page, array($this, 'admin_menu_pages'));
+						}
 					}
 				}
-			//}
+			}
 		}
 	}
 
@@ -153,12 +146,6 @@ class mf_internal_pages
 			'context' => 'side',
 			'priority' => 'low',
 			'fields' => array(
-				/*array(
-					'name'  => __("Show in menu", 'lang_int_page'),
-					'id' => $this->meta_prefix.'show_in_menu',
-					'type' => 'select',
-					'options' => get_yes_no_for_select(),
-				),*/
 				array(
 					'name'  => __("Roles", 'lang_int_page'),
 					'id' => $this->meta_prefix.'roles',
@@ -288,12 +275,6 @@ class mf_internal_pages
 
 				echo $post_meta != '' ? $post_meta : 100;
 			break;
-
-			/*case 'show_in_menu':
-				$post_meta = get_post_meta($id, $this->meta_prefix.'show_in_menu', true);
-
-				echo "<i class='".($post_meta == "yes" ? "fa fa-check green" : "fa fa-times red")." fa-lg'></i>";
-			break;*/
 		}
 	}
 }
