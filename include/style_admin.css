@@ -1,0 +1,7 @@
+@media all
+{
+	.subsubsub, .search-box, .tablenav, .toggle-row
+	{
+		display: none;
+	}
+}

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-02 05:11+0100\n"
+"POT-Creation-Date: 2019-03-22 09:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -21,20 +21,20 @@ msgstr "Interne sider"
 msgid "Redirecting to %s"
 msgstr "Omdirigere til %s"
 
-msgid "Settings"
-msgstr "Innstillinger"
-
-msgid "Show in menu"
-msgstr "Vis i menyen"
+msgid "Choose Here"
+msgstr "Velg Her"
 
 msgid "Roles"
 msgstr "Roller"
 
-msgid "Choose Here"
-msgstr "Velg Her"
+msgid "Icon"
+msgstr "Ikonet"
 
-msgid "Admin"
-msgstr "Admin"
+msgid "Cart"
+msgstr "Handlekurven"
+
+msgid "Clipboard"
+msgstr "Utklippstavlen"
 
 msgid "Download"
 msgstr "Last ned"
@@ -51,26 +51,62 @@ msgstr "Grupper"
 msgid "Images"
 msgstr "Bilder"
 
-msgid "Media"
-msgstr "Media"
+msgid "Key"
+msgstr "Nøkkel"
+
+msgid "List"
+msgstr "Listen"
+
+msgid "Lock"
+msgstr "Lås"
+
+msgid "Megaphone"
+msgstr "Megafon"
+
+msgid "Network"
+msgstr "Nettverk"
+
+msgid "Play"
+msgstr "Spille"
 
 msgid "Phone"
 msgstr "Telefon"
 
+msgid "Security"
+msgstr "Sikkerhet"
+
+msgid "Settings"
+msgstr "Innstillinger"
+
 msgid "Default"
 msgstr "Standard"
+
+msgid "Tickets"
+msgstr "Billetter"
+
+msgid "Unlock"
+msgstr "Låse opp"
 
 msgid "Warning"
 msgstr "Advarsel"
 
+msgid "Position"
+msgstr "Posisjon"
+
 msgid "Posts"
 msgstr "Innlegg"
+
+msgid "Links"
+msgstr "Linker"
 
 msgid "Pages"
 msgstr "Sider"
 
 msgid "Comments"
 msgstr "Kommentarer"
+
+msgid "Appearance"
+msgstr "Utseende"
 
 msgid "Plugins"
 msgstr "Utvidelser"
@@ -80,4 +116,7 @@ msgstr "Brukere"
 
 msgid "Tools"
 msgstr "Verktøy"
+
+msgid "External Link"
+msgstr "Ekstern Lenke"
 
