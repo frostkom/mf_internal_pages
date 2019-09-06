@@ -215,9 +215,6 @@ class mf_internal_pages
 			);
 		}
 
-		//$obj_base = new mf_base();
-
-		//if($obj_base->has_page_template(array('template' => "/plugins/mf_front_end_admin/include/templates/template_admin.php")) > 0)
 		if(apply_filters('get_front_end_admin_id', 0) > 0)
 		{
 			$arr_fields[] = array(
