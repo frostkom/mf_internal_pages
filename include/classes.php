@@ -322,6 +322,7 @@ class mf_internal_pages
 		$cols['icons'] = __("Icons", 'lang_int_page');
 		$cols['roles'] = __("Roles", 'lang_int_page');
 		$cols['position'] = __("Position", 'lang_int_page');
+		$cols['external_link'] = __("External Link", 'lang_int_page');
 
 		return $cols;
 	}
@@ -350,7 +351,7 @@ class mf_internal_pages
 			break;
 
 			case 'roles':
-				$post_meta_roles = get_post_meta($id, $this->meta_prefix.'roles', false);
+				$post_meta_roles = get_post_meta($id, $this->meta_prefix.$col, false);
 
 				$arr_data = get_roles_for_select(array('add_choose_here' => false, 'use_capability' => false));
 
@@ -378,9 +379,18 @@ class mf_internal_pages
 			break;
 
 			case 'position':
-				$post_meta = get_post_meta($id, $this->meta_prefix.'position', true);
+				$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
 
 				echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
+			break;
+
+			case 'external_link':
+				$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
+
+				if($post_meta != '')
+				{
+					echo "<a href='".$post_meta."'><i class='fas fa-link'></i></a>";
+				}
 			break;
 		}
 	}
