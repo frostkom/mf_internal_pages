@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-22 09:52+0100\n"
+"POT-Creation-Date: 2019-10-10 08:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -42,6 +42,9 @@ msgstr "Last ned"
 msgid "E-mail"
 msgstr "E-post"
 
+msgid "Forms"
+msgstr "Former"
+
 msgid "Gallery"
 msgstr "Galleri"
 
@@ -69,6 +72,9 @@ msgstr "Nettverk"
 msgid "Play"
 msgstr "Spille"
 
+msgid "Plus"
+msgstr "Pluss"
+
 msgid "Phone"
 msgstr "Telefon"
 
@@ -92,6 +98,9 @@ msgstr "Advarsel"
 
 msgid "Position"
 msgstr "Posisjon"
+
+msgid "Separator"
+msgstr "Separatoren"
 
 msgid "Posts"
 msgstr "Innlegg"
