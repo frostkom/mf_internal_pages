@@ -319,10 +319,9 @@ class mf_internal_pages
 	{
 		unset($cols['date']);
 
-		$cols['icons'] = __("Icons", 'lang_int_page');
+		$cols['information'] = __("Information", 'lang_int_page');
 		$cols['roles'] = __("Roles", 'lang_int_page');
 		$cols['position'] = __("Position", 'lang_int_page');
-		$cols['external_link'] = __("External Link", 'lang_int_page');
 
 		return $cols;
 	}
@@ -331,11 +330,12 @@ class mf_internal_pages
 	{
 		switch($col)
 		{
-			case 'icons':
+			case 'information':
 				$post_meta_front_end_icon = get_post_meta($id, $this->meta_prefix.'front_end_icon', true);
 				$post_meta_icon = get_post_meta($id, $this->meta_prefix.'icon', true);
+				$post_meta_external_link = get_post_meta($id, $this->meta_prefix.'external_link', true);
 
-				echo "<div class='flex_flow'>";
+				echo "<div class='flex_flow tight'>";
 
 					if($post_meta_front_end_icon != '')
 					{
@@ -345,6 +345,11 @@ class mf_internal_pages
 					if($post_meta_icon != '')
 					{
 						echo "<div><div class='dashicons-before ".$post_meta_icon."'><br></div></div>";
+					}
+
+					if($post_meta_external_link != '')
+					{
+						echo "<a href='".$post_meta_external_link."'><i class='fas fa-link'></i></a>";
 					}
 
 				echo "</div>";
@@ -383,15 +388,6 @@ class mf_internal_pages
 
 				echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
 			break;
-
-			case 'external_link':
-				$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
-
-				if($post_meta != '')
-				{
-					echo "<a href='".$post_meta."'><i class='fas fa-link'></i></a>";
-				}
-			break;
 		}
 	}
 
@@ -408,9 +404,11 @@ class mf_internal_pages
 		}
 	}
 
-	function init_base_admin($arr_views)
+	function init_base_admin($arr_views, $data = array())
 	{
 		global $wpdb;
+
+		if(!isset($data['include'])){	$data['include'] = 'publish';}
 
 		$templates = "";
 		$plugin_include_url = plugin_dir_url(__FILE__);
@@ -428,12 +426,26 @@ class mf_internal_pages
 		$user_id = get_current_user_id();
 		$profile_role = get_current_user_role($user_id);
 
-		$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND post_parent = '0' ORDER BY menu_order ASC", $this->post_type, 'publish'));
+		$query_where = "";
+
+		switch($data['include'])
+		{
+			case 'all':
+				$query_where .= " AND (post_status = 'draft' OR post_status = 'publish')";
+			break;
+
+			default:
+				$query_where .= " AND post_status = '".esc_sql($data['include'])."'";
+			break;
+		}
+
+		$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_status, post_title, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_parent = '0'".$query_where." ORDER BY menu_order ASC", $this->post_type));
 
 		foreach($result as $r)
 		{
 			$post_id = $r->ID;
 			$post_name = $r->post_name;
+			$post_status = $r->post_status;
 			$post_title = $r->post_title;
 			$post_content = $r->post_content;
 
@@ -442,6 +454,18 @@ class mf_internal_pages
 			if(count($arr_post_roles) == 0 || in_array($profile_role, $arr_post_roles))
 			{
 				$post_icon = get_post_meta($post_id, $this->meta_prefix.'front_end_icon', true);
+
+				if($post_status != 'publish')
+				{
+					if(!isset($obj_fea))
+					{
+						$obj_fea = new mf_fea();
+					}
+
+					$arr_post_status = $obj_fea->get_post_status_for_select();
+
+					$post_title .= " (".$arr_post_status[$post_status].")";
+				}
 
 				$arr_views['internal_'.$post_name] = array(
 					'name' => $post_title,
@@ -460,7 +484,7 @@ class mf_internal_pages
 					),
 				);
 
-				$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND post_parent = %d ORDER BY menu_order ASC", $this->post_type, 'publish', $post_id));
+				$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = %s AND post_parent = %d".$query_where." ORDER BY menu_order ASC", $this->post_type, $post_id));
 
 				if($wpdb->num_rows > 0)
 				{

@@ -3,7 +3,7 @@
 Plugin Name: MF Internal Pages
 Plugin URI: https://github.com/frostkom/mf_internal_pages
 Description: 
-Version: 2.4.4
+Version: 2.4.5
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -37,7 +37,7 @@ else
 	add_action('wp_head', array($obj_internal_pages, 'wp_head'), 0);
 }
 
-add_filter('init_base_admin', array($obj_internal_pages, 'init_base_admin'));
+add_filter('init_base_admin', array($obj_internal_pages, 'init_base_admin'), 10, 2);
 
 load_plugin_textdomain('lang_int_page', false, dirname(plugin_basename(__FILE__)).'/lang/');
 
