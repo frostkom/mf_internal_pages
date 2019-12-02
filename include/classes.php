@@ -197,6 +197,9 @@ class mf_internal_pages
 
 	function rwmb_meta_boxes($meta_boxes)
 	{
+		$post_id = check_var('post');
+		$post_parent = ($post_id > 0 ? mf_get_post_content($post_id, 'post_parent') : 0);
+
 		$arr_fields = array();
 
 		$arr_roles = get_all_roles(); //array('denied' => array('administrator'))
@@ -215,87 +218,90 @@ class mf_internal_pages
 			);
 		}
 
-		if(apply_filters('get_front_end_admin_id', 0) > 0)
+		if($post_parent == 0)
 		{
+			if(apply_filters('get_front_end_admin_id', 0) > 0)
+			{
+				$arr_fields[] = array(
+					'name' => __("Icon", 'lang_int_page')." (".__("Front-end", 'lang_int_page').")",
+					'id' => $this->meta_prefix.'front_end_icon',
+					'type' => 'select',
+					'options' => $this->get_icons_for_select(),
+				);
+			}
+
 			$arr_fields[] = array(
-				'name' => __("Icon", 'lang_int_page')." (".__("Front-end", 'lang_int_page').")",
-				'id' => $this->meta_prefix.'front_end_icon',
+				'name' => __("Icon", 'lang_int_page')." (".__("Admin", 'lang_int_page').")",
+				'id' => $this->meta_prefix.'icon',
 				'type' => 'select',
-				'options' => $this->get_icons_for_select(),
+				'options' => array(
+					'' => "-- ".__("Choose Here", 'lang_int_page')." --",
+					'dashicons-admin-site' => __("Admin", 'lang_int_page'),
+					'dashicons-cart' => __("Cart", 'lang_int_page'),
+					'dashicons-clipboard' => __("Clipboard", 'lang_int_page'),
+					'dashicons-dashboard' => __("Dashboard", 'lang_int_page'),
+					'dashicons-download' => __("Download", 'lang_int_page'),
+					'dashicons-email-alt' => __("E-mail", 'lang_int_page'),
+					'dashicons-facebook-alt' => "Facebook",
+					'dashicons-forms' => __("Forms", 'lang_int_page'),
+					'dashicons-format-gallery' => __("Gallery", 'lang_int_page'),
+					'dashicons-groups' => __("Groups", 'lang_int_page'),
+					'dashicons-images-alt2' => __("Images", 'lang_int_page'),
+					'dashicons-admin-network' => __("Key", 'lang_int_page'),
+					'dashicons-list-view' => __("List", 'lang_int_page'),
+					'dashicons-lock' => __("Lock", 'lang_int_page'),
+					'dashicons-admin-media' => __("Media", 'lang_int_page'),
+					'dashicons-megaphone' => __("Megaphone", 'lang_int_page'),
+					'dashicons-networking' => __("Network", 'lang_int_page'),
+					'dashicons-controls-play' => __("Play", 'lang_int_page'),
+					'dashicons-plus-alt' => __("Plus", 'lang_int_page'),
+					'dashicons-phone' => __("Phone", 'lang_int_page'),
+					'dashicons-shield' => __("Security", 'lang_int_page'),
+					'dashicons-admin-generic' => __("Settings", 'lang_int_page')." (".__("Default", 'lang_int_page').")",
+					'dashicons-tickets' => __("Tickets", 'lang_int_page'),
+					'dashicons-unlock' => __("Unlock", 'lang_int_page'),
+					'dashicons-video-alt3' => __("Video", 'lang_int_page'),
+					'dashicons-warning' => __("Warning", 'lang_int_page'),
+					/* https://developer.wordpress.org/resource/dashicons/ */
+				),
+				/*'attributes' => array(
+					'condition_type' => 'show_this_if',
+					'condition_selector' => 'parent_id',
+					'condition_value' => '',
+				),*/
+			);
+
+			$arr_fields[] = array(
+				'name' => __("Position", 'lang_int_page'),
+				'id' => $this->meta_prefix.'position',
+				'type' => 'number',
+				'attributes' => array(
+					'min' => 0,
+					'max' => 140,
+				),
+				'desc' => "<ul>"
+					."<li>2 = ".__("Dashboard", 'lang_int_page')."</li>"
+					//."<li>4 = ".__("Separator", 'lang_int_page')."</li>"
+					."<li>5 = ".__("Posts", 'lang_int_page')."</li>"
+					."<li>10 = ".__("Media", 'lang_int_page')."</li>"
+					//."<li>15 = ".__("Links", 'lang_int_page')."</li>"
+					."<li>20 = ".__("Pages", 'lang_int_page')."</li>"
+					."<li>25 = ".__("Comments", 'lang_int_page')."</li>"
+					//."<li>59 = ".__("Separator", 'lang_int_page')."</li>"
+					."<li>60 = ".__("Appearance", 'lang_int_page')."</li>"
+					."<li>65 = ".__("Plugins", 'lang_int_page')."</li>"
+					."<li>70 = ".__("Users", 'lang_int_page')."</li>"
+					."<li>75 = ".__("Tools", 'lang_int_page')."</li>"
+					."<li>80 = ".__("Settings", 'lang_int_page')."</li>"
+					//."<li>99 = ".__("Separator", 'lang_int_page')."</li>"
+				."</ul>",
+				/*'attributes' => array(
+					'condition_type' => 'show_this_if',
+					'condition_selector' => 'parent_id',
+					'condition_value' => '',
+				),*/
 			);
 		}
-
-		$arr_fields[] = array(
-			'name' => __("Icon", 'lang_int_page')." (".__("Admin", 'lang_int_page').")",
-			'id' => $this->meta_prefix.'icon',
-			'type' => 'select',
-			'options' => array(
-				'' => "-- ".__("Choose Here", 'lang_int_page')." --",
-				'dashicons-admin-site' => __("Admin", 'lang_int_page'),
-				'dashicons-cart' => __("Cart", 'lang_int_page'),
-				'dashicons-clipboard' => __("Clipboard", 'lang_int_page'),
-				'dashicons-dashboard' => __("Dashboard", 'lang_int_page'),
-				'dashicons-download' => __("Download", 'lang_int_page'),
-				'dashicons-email-alt' => __("E-mail", 'lang_int_page'),
-				'dashicons-facebook-alt' => "Facebook",
-				'dashicons-forms' => __("Forms", 'lang_int_page'),
-				'dashicons-format-gallery' => __("Gallery", 'lang_int_page'),
-				'dashicons-groups' => __("Groups", 'lang_int_page'),
-				'dashicons-images-alt2' => __("Images", 'lang_int_page'),
-				'dashicons-admin-network' => __("Key", 'lang_int_page'),
-				'dashicons-list-view' => __("List", 'lang_int_page'),
-				'dashicons-lock' => __("Lock", 'lang_int_page'),
-				'dashicons-admin-media' => __("Media", 'lang_int_page'),
-				'dashicons-megaphone' => __("Megaphone", 'lang_int_page'),
-				'dashicons-networking' => __("Network", 'lang_int_page'),
-				'dashicons-controls-play' => __("Play", 'lang_int_page'),
-				'dashicons-plus-alt' => __("Plus", 'lang_int_page'),
-				'dashicons-phone' => __("Phone", 'lang_int_page'),
-				'dashicons-shield' => __("Security", 'lang_int_page'),
-				'dashicons-admin-generic' => __("Settings", 'lang_int_page')." (".__("Default", 'lang_int_page').")",
-				'dashicons-tickets' => __("Tickets", 'lang_int_page'),
-				'dashicons-unlock' => __("Unlock", 'lang_int_page'),
-				'dashicons-video-alt3' => __("Video", 'lang_int_page'),
-				'dashicons-warning' => __("Warning", 'lang_int_page'),
-				/* https://developer.wordpress.org/resource/dashicons/ */
-			),
-			/*'attributes' => array(
-				'condition_type' => 'show_this_if',
-				'condition_selector' => 'parent_id',
-				'condition_value' => '',
-			),*/
-		);
-
-		$arr_fields[] = array(
-			'name' => __("Position", 'lang_int_page'),
-			'id' => $this->meta_prefix.'position',
-			'type' => 'number',
-			'attributes' => array(
-				'min' => 0,
-				'max' => 140,
-			),
-			'desc' => "<ul>"
-				."<li>2 = ".__("Dashboard", 'lang_int_page')."</li>"
-				//."<li>4 = ".__("Separator", 'lang_int_page')."</li>"
-				."<li>5 = ".__("Posts", 'lang_int_page')."</li>"
-				."<li>10 = ".__("Media", 'lang_int_page')."</li>"
-				//."<li>15 = ".__("Links", 'lang_int_page')."</li>"
-				."<li>20 = ".__("Pages", 'lang_int_page')."</li>"
-				."<li>25 = ".__("Comments", 'lang_int_page')."</li>"
-				//."<li>59 = ".__("Separator", 'lang_int_page')."</li>"
-				."<li>60 = ".__("Appearance", 'lang_int_page')."</li>"
-				."<li>65 = ".__("Plugins", 'lang_int_page')."</li>"
-				."<li>70 = ".__("Users", 'lang_int_page')."</li>"
-				."<li>75 = ".__("Tools", 'lang_int_page')."</li>"
-				."<li>80 = ".__("Settings", 'lang_int_page')."</li>"
-				//."<li>99 = ".__("Separator", 'lang_int_page')."</li>"
-			."</ul>",
-			/*'attributes' => array(
-				'condition_type' => 'show_this_if',
-				'condition_selector' => 'parent_id',
-				'condition_value' => '',
-			),*/
-		);
 
 		$arr_fields[] = array(
 			'name' => __("External Link", 'lang_int_page'),
@@ -303,14 +309,17 @@ class mf_internal_pages
 			'type' => 'url',
 		);
 
-		$meta_boxes[] = array(
-			'id' => '',
-			'title' => __("Settings", 'lang_int_page'),
-			'post_types' => array($this->post_type),
-			'context' => 'side',
-			'priority' => 'low',
-			'fields' => $arr_fields,
-		);
+		if(count($arr_fields) > 0)
+		{
+			$meta_boxes[] = array(
+				'id' => '',
+				'title' => __("Settings", 'lang_int_page'),
+				'post_types' => array($this->post_type),
+				'context' => 'side',
+				'priority' => 'low',
+				'fields' => $arr_fields,
+			);
+		}
 
 		return $meta_boxes;
 	}
@@ -331,20 +340,26 @@ class mf_internal_pages
 		switch($col)
 		{
 			case 'information':
-				$post_meta_front_end_icon = get_post_meta($id, $this->meta_prefix.'front_end_icon', true);
-				$post_meta_icon = get_post_meta($id, $this->meta_prefix.'icon', true);
+				$post_parent = mf_get_post_content($id, 'post_parent');
+
 				$post_meta_external_link = get_post_meta($id, $this->meta_prefix.'external_link', true);
 
 				echo "<div class='flex_flow tight'>";
 
-					if($post_meta_front_end_icon != '')
+					if($post_parent == 0)
 					{
-						echo "<div><i class='".$post_meta_front_end_icon." fa-lg'></i></div>";
-					}
+						$post_meta_front_end_icon = get_post_meta($id, $this->meta_prefix.'front_end_icon', true);
+						$post_meta_icon = get_post_meta($id, $this->meta_prefix.'icon', true);
 
-					if($post_meta_icon != '')
-					{
-						echo "<div><div class='dashicons-before ".$post_meta_icon."'><br></div></div>";
+						if($post_meta_front_end_icon != '')
+						{
+							echo "<div><i class='".$post_meta_front_end_icon." fa-lg'></i></div>";
+						}
+
+						if($post_meta_icon != '')
+						{
+							echo "<div><div class='dashicons-before ".$post_meta_icon."'><br></div></div>";
+						}
 					}
 
 					if($post_meta_external_link != '')
@@ -384,9 +399,14 @@ class mf_internal_pages
 			break;
 
 			case 'position':
-				$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
+				$post_parent = mf_get_post_content($id, 'post_parent');
 
-				echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
+				if($post_parent == 0)
+				{
+					$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
+
+					echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
+				}
 			break;
 		}
 	}
@@ -400,7 +420,7 @@ class mf_internal_pages
 			$plugin_include_url = plugin_dir_url(__FILE__);
 			$plugin_version = get_plugin_version(__FILE__);
 
-			mf_enqueue_style('style_internal_admin', $plugin_include_url."style.css", $plugin_version);
+			mf_enqueue_style('style_internal_pages', $plugin_include_url."style.css", $plugin_version);
 		}
 	}
 
@@ -416,7 +436,7 @@ class mf_internal_pages
 
 		if(!is_admin())
 		{
-			mf_enqueue_style('style_internal_admin', $plugin_include_url."style_admin.css", $plugin_version);
+			mf_enqueue_style('style_internal_pages_admin', $plugin_include_url."style_admin.css", $plugin_version);
 
 			$templates .= "<script type='text/template' id='template_admin_internal'>
 				<%= output %>
