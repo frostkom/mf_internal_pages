@@ -272,14 +272,14 @@ class mf_internal_pages
 			);
 
 			$arr_fields[] = array(
-				'name' => __("Position", 'lang_int_page'),
+				'name' => __("Position", 'lang_int_page')." <i class='fa fa-info-circle blue' title='2 = ".__("Dashboard", 'lang_int_page')."\n5 = ".__("Posts", 'lang_int_page')."\n10 = ".__("Media", 'lang_int_page')."\n20 = ".__("Pages", 'lang_int_page')."\n25 = ".__("Comments", 'lang_int_page')."\n60 = ".__("Appearance", 'lang_int_page')."\n65 = ".__("Plugins", 'lang_int_page')."\n70 = ".__("Users", 'lang_int_page')."\n75 = ".__("Tools", 'lang_int_page')."\n80 = ".__("Settings", 'lang_int_page')."'></i>",
 				'id' => $this->meta_prefix.'position',
 				'type' => 'number',
 				'attributes' => array(
 					'min' => 0,
 					'max' => 140,
 				),
-				'desc' => "<ul>"
+				/*'desc' => "<ul>"
 					."<li>2 = ".__("Dashboard", 'lang_int_page')."</li>"
 					//."<li>4 = ".__("Separator", 'lang_int_page')."</li>"
 					."<li>5 = ".__("Posts", 'lang_int_page')."</li>"
@@ -294,7 +294,7 @@ class mf_internal_pages
 					."<li>75 = ".__("Tools", 'lang_int_page')."</li>"
 					."<li>80 = ".__("Settings", 'lang_int_page')."</li>"
 					//."<li>99 = ".__("Separator", 'lang_int_page')."</li>"
-				."</ul>",
+				."</ul>",*/
 				/*'attributes' => array(
 					'condition_type' => 'show_this_if',
 					'condition_selector' => 'parent_id',
