@@ -428,13 +428,14 @@ class mf_internal_pages
 	{
 		global $wpdb;
 
+		if(!isset($data['init'])){	$data['init'] = false;}
 		if(!isset($data['include'])){	$data['include'] = 'publish';}
 
 		$templates = "";
 		$plugin_include_url = plugin_dir_url(__FILE__);
 		$plugin_version = get_plugin_version(__FILE__);
 
-		if(!is_admin())
+		if($data['init'] == true)
 		{
 			mf_enqueue_style('style_internal_pages_admin', $plugin_include_url."style_admin.css", $plugin_version);
 
