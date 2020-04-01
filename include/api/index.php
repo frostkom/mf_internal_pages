@@ -30,21 +30,21 @@ switch($arr_type[1])
 		{
 			$post_name = $arr_type[(count($arr_type) - 1)];
 
-			$page_content = $obj_internal_pages->get_page_content($post_name);
+			$post_information = $obj_internal_pages->get_post_information(array('post_name' => $post_name));
 
-			if(isset($page_content['external_link']) && $page_content['external_link'] != '')
+			if(isset($post_information['external_link']) && $post_information['external_link'] != '')
 			{
 				$json_output['success'] = true;
-				$json_output['redirect'] = $page_content['external_link'];
+				$json_output['redirect'] = $post_information['external_link'];
 			}
 
-			else if(isset($page_content['post_content']) && $page_content['post_content'] != '')
+			else if(isset($post_information['post_content']) && $post_information['post_content'] != '')
 			{
 				$json_output['success'] = true;
 				$json_output['admin_response'] = array(
 					'template' => str_replace("/", "_", $type_switch),
 					'container' => str_replace("/", "_", $type),
-					'output' => apply_filters('the_content', $page_content['post_content']),
+					'output' => apply_filters('the_content', $post_information['post_content']),
 					//'timestamp' => date("Y-m-d H:i:s"),
 				);
 			}
@@ -52,7 +52,7 @@ switch($arr_type[1])
 			else
 			{
 				$json_output['success'] = false;
-				$json_output['message'] = sprintf(__("I could not find any information for the page %s that you were requesting"), $post_name);
+				$json_output['message'] = sprintf(__("I could not find any information for the page %s that you were requesting"), $post_information['post_title']); //$post_name
 			}
 		}
 

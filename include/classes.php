@@ -130,13 +130,15 @@ class mf_internal_pages
 		}
 	}
 
-	function get_page_content($post_name)
+	function get_post_information($data)
 	{
 		global $wpdb;
 
+		if(!isset($data['post_name'])){		$data['post_name'] = '';}
+
 		$out = array();
 
-		$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_name = %s", $this->post_type, $post_name));
+		$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_name = %s", $this->post_type, $data['post_name']));
 
 		foreach($result as $r)
 		{
@@ -147,6 +149,7 @@ class mf_internal_pages
 			$post_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
 
 			$out = array(
+				//'post_id' => $post_id,
 				'post_title' => $post_title,
 				'post_content' => $post_content,
 				'external_link' => $post_external_link,
@@ -161,20 +164,20 @@ class mf_internal_pages
 		$page = check_var('page', 'char');
 		$post_name = str_replace($this->post_type."_", "", $page);
 
-		$page_content = $this->get_page_content($post_name);
+		$post_information = $this->get_post_information(array('post_name' => $post_name));
 
-		if(isset($page_content['external_link']) && $page_content['external_link'] != '')
+		if(isset($post_information['external_link']) && $post_information['external_link'] != '')
 		{
-			mf_redirect($page_content['external_link']);
+			mf_redirect($post_information['external_link']);
 
-			$page_content['post_content'] = sprintf(__("Redirecting to %s", 'lang_int_page'), "<a href='".$page_content['external_link']."'>".$page_content['external_link']."</a>")."&hellip;";
+			$post_information['post_content'] = sprintf(__("Redirecting to %s", 'lang_int_page'), "<a href='".$post_information['external_link']."'>".$post_information['external_link']."</a>")."&hellip;";
 		}
 
-		if(isset($page_content['post_title']) && $page_content['post_title'] != '')
+		if(isset($post_information['post_title']) && $post_information['post_title'] != '')
 		{
 			echo "<div class='wrap'>
-				<h1>".$page_content['post_title']."</h1>"
-				.apply_filters('the_content', $page_content['post_content'])
+				<h1>".$post_information['post_title']."</h1>"
+				.apply_filters('the_content', $post_information['post_content'])
 			."</div>";
 		}
 	}
