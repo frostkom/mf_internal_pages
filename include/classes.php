@@ -315,7 +315,7 @@ class mf_internal_pages
 		if(count($arr_fields) > 0)
 		{
 			$meta_boxes[] = array(
-				'id' => '',
+				'id' => $this->meta_prefix.'settings',
 				'title' => __("Settings", 'lang_int_page'),
 				'post_types' => array($this->post_type),
 				'context' => 'side',
