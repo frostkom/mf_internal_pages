@@ -375,7 +375,7 @@ class mf_internal_pages
 
 					if($post_meta_external_link != '')
 					{
-						echo "<a href='".$post_meta_external_link."'><i class='fas fa-link'></i></a>";
+						echo "<a href='".$post_meta_external_link."'><i class='fa fa-link'></i></a>";
 					}
 
 				echo "</div>";
