@@ -17,7 +17,7 @@ class mf_internal_pages
 
 		$args = array(
 			'labels' => $labels,
-			'public' => is_user_logged_in(),
+			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved
 			'show_in_menu' => false,
 			'show_in_nav_menus' => false,
 			'exclude_from_search' => true,
@@ -208,7 +208,10 @@ class mf_internal_pages
 
 	function rwmb_meta_boxes($meta_boxes)
 	{
-		$post_id = check_var('post');
+		$post_id = get_rwmb_post_id(array(
+			'meta_key' => 'meta_internal_pages_last_id',
+		));
+
 		$post_parent = ($post_id > 0 ? mf_get_post_content($post_id, 'post_parent') : 0);
 
 		$arr_fields = array();
@@ -422,6 +425,13 @@ class mf_internal_pages
 		}
 	}
 
+	function wp_sitemaps_post_types($post_types)
+	{
+		unset($post_types[$this->post_type]);
+
+		return $post_types;
+	}
+
 	function wp_head()
 	{
 		global $post;
@@ -435,11 +445,24 @@ class mf_internal_pages
 		}
 	}
 
+	function the_content($html)
+	{
+		global $post;
+
+		// This is needed because we no longer can set 'public' => is_user_logged_in() in init()
+		if($post->post_type == $this->post_type && !is_user_logged_in())
+		{
+			mf_redirect(wp_login_url()."?redirect_to=".$_SERVER['REQUEST_URI']);
+		}
+
+		return $html;
+	}
+
 	function init_base_admin($arr_views, $data = array())
 	{
 		global $wpdb;
 
-		if(!isset($data['init'])){	$data['init'] = false;}
+		if(!isset($data['init'])){		$data['init'] = false;}
 		if(!isset($data['include'])){	$data['include'] = 'publish';}
 
 		$templates = "";
