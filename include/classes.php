@@ -450,7 +450,7 @@ class mf_internal_pages
 		global $post;
 
 		// This is needed because we no longer can set 'public' => is_user_logged_in() in init()
-		if($post->post_type == $this->post_type && !is_user_logged_in())
+		if(isset($post->post_type) && $post->post_type == $this->post_type && !is_user_logged_in())
 		{
 			mf_redirect(wp_login_url()."?redirect_to=".$_SERVER['REQUEST_URI']);
 		}

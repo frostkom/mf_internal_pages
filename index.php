@@ -3,7 +3,7 @@
 Plugin Name: MF Internal Pages
 Plugin URI: https://github.com/frostkom/mf_internal_pages
 Description: 
-Version: 2.5.0
+Version: 2.5.1
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
