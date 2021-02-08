@@ -17,7 +17,7 @@ class mf_internal_pages
 
 		$args = array(
 			'labels' => $labels,
-			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved
+			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved because non-admins was not displayed as logged in att this moment
 			'show_in_menu' => false,
 			'show_in_nav_menus' => false,
 			'exclude_from_search' => true,
@@ -445,18 +445,21 @@ class mf_internal_pages
 		}
 	}
 
-	function the_content($html)
+	// This can't be verified here either, only admins are displayed as logged in
+	/*function the_content($html)
 	{
 		global $post;
 
-		// This is needed because we no longer can set 'public' => is_user_logged_in() in init()
-		if(isset($post->post_type) && $post->post_type == $this->post_type && !is_user_logged_in())
+		if(isset($post->post_type) && $post->post_type == $this->post_type)
 		{
-			mf_redirect(wp_login_url()."?redirect_to=".$_SERVER['REQUEST_URI']);
+			if(!is_user_logged_in())
+			{
+				mf_redirect(wp_login_url()."?redirect_to=".$_SERVER['REQUEST_URI']);
+			}
 		}
 
 		return $html;
-	}
+	}*/
 
 	function init_base_admin($arr_views, $data = array())
 	{
