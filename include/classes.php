@@ -432,7 +432,7 @@ class mf_internal_pages
 		return $post_types;
 	}
 
-	function wp_head()
+	/*function wp_head()
 	{
 		global $post;
 
@@ -441,9 +441,10 @@ class mf_internal_pages
 			$plugin_include_url = plugin_dir_url(__FILE__);
 			$plugin_version = get_plugin_version(__FILE__);
 
+			// The files does not even exist so why try using it???
 			mf_enqueue_style('style_internal_pages', $plugin_include_url."style.css", $plugin_version);
 		}
-	}
+	}*/
 
 	// This can't be verified here either, only admins are displayed as logged in
 	/*function the_content($html)

@@ -37,7 +37,7 @@ else
 {
 	add_filter('wp_sitemaps_post_types', array($obj_internal_pages, 'wp_sitemaps_post_types'));
 
-	add_action('wp_head', array($obj_internal_pages, 'wp_head'), 0);
+	//add_action('wp_head', array($obj_internal_pages, 'wp_head'), 0);
 
 	//add_filter('the_content', array($obj_internal_pages, 'the_content'));
 }
