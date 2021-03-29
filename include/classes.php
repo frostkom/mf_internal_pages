@@ -86,14 +86,6 @@ class mf_internal_pages
 		return $out;
 	}
 
-	function admin_init()
-	{
-		if(!is_plugin_active("mf_base/index.php"))
-		{
-			deactivate_plugins(str_replace("include/classes.php", "index.php", plugin_basename(__FILE__)));
-		}
-	}
-
 	function admin_menu()
 	{
 		$menu_root = "mf_internal_pages/";
