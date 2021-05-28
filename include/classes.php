@@ -428,6 +428,13 @@ class mf_internal_pages
 		}
 	}
 
+	function filter_last_updated_post_types($array, $type)
+	{
+		$array[] = $this->post_type;
+
+		return $array;
+	}
+
 	function wp_sitemaps_post_types($post_types)
 	{
 		unset($post_types[$this->post_type]);
@@ -456,7 +463,7 @@ class mf_internal_pages
 
 		if(isset($post->post_type) && $post->post_type == $this->post_type)
 		{
-			if(!is_user_logged_in())
+			if(is_user_logged_in() == false)
 			{
 				mf_redirect(wp_login_url()."?redirect_to=".$_SERVER['REQUEST_URI']);
 			}
