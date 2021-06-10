@@ -15,7 +15,10 @@ $json_output = array(
 	'success' => false,
 );
 
-$obj_internal_pages = new mf_internal_pages();
+if(!isset($obj_internal_pages))
+{
+	$obj_internal_pages = new mf_internal_pages();
+}
 
 $type = check_var('type');
 

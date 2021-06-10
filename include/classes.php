@@ -182,26 +182,6 @@ class mf_internal_pages
 		}
 	}
 
-	/*function get_icons_for_select()
-	{
-		global $obj_font_icons;
-
-		if(!isset($obj_font_icons))
-		{
-			$obj_font_icons = new mf_font_icons();
-		}
-
-		$arr_data = array();
-		$arr_data[''] = "-- ".__("Choose Here", 'lang_int_page')." --";
-
-		foreach($obj_font_icons->get_array(array('allow_optgroup' => false)) as $key => $value)
-		{
-			$arr_data[$key] = $value;
-		}
-
-		return $arr_data;
-	}*/
-
 	function rwmb_meta_boxes($meta_boxes)
 	{
 		global $obj_base;
