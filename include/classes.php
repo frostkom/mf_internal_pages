@@ -58,7 +58,7 @@ class mf_internal_pages
 						'children' => array(),
 					);
 
-					$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND post_parent = %d ORDER BY menu_order ASC", $this->post_type, 'publish', $post_id));
+					$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND post_parent = '%d' ORDER BY menu_order ASC", $this->post_type, 'publish', $post_id));
 
 					if($wpdb->num_rows > 0)
 					{
@@ -533,7 +533,7 @@ class mf_internal_pages
 					),
 				);
 
-				$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = %s AND post_parent = %d".$query_where." ORDER BY menu_order ASC", $this->post_type, $post_id));
+				$result2 = $wpdb->get_results($wpdb->prepare("SELECT ID, post_name, post_title FROM ".$wpdb->posts." WHERE post_type = %s AND post_parent = '%d'".$query_where." ORDER BY menu_order ASC", $this->post_type, $post_id));
 
 				if($wpdb->num_rows > 0)
 				{
