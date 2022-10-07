@@ -2,8 +2,8 @@
 /*
 Plugin Name: MF Internal Pages
 Plugin URI: https://github.com/frostkom/mf_internal_pages
-Description: 
-Version: 2.5.9
+Description:
+Version: 2.5.10
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -56,8 +56,12 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 
 	function uninstall_int_page()
 	{
+		include_once("include/classes.php");
+
+		$obj_internal_pages = new mf_internal_pages();
+
 		mf_uninstall_plugin(array(
-			'post_types' => array('int_page'),
+			'post_types' => array($obj_internal_pages->post_type),
 			'meta' => array('meta_internal_pages_last_id'),
 		));
 	}

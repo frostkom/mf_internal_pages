@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-16 13:05+0100\n"
+"POT-Creation-Date: 2022-06-20 14:58+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -21,14 +21,17 @@ msgstr "Interna sidor"
 msgid "Redirecting to %s"
 msgstr "Dirigerar om till %s"
 
-msgid "Choose Here"
-msgstr "Välj här"
-
 msgid "Roles"
 msgstr "Roller"
 
 msgid "Icon"
 msgstr "Ikon"
+
+msgid "Front-end"
+msgstr "Framsida"
+
+msgid "Choose Here"
+msgstr "Välj här"
 
 msgid "Cart"
 msgstr "Kundkorg"
@@ -96,14 +99,8 @@ msgstr "Lås upp"
 msgid "Warning"
 msgstr "Varning"
 
-msgid "Separator"
-msgstr "Avgränsare"
-
 msgid "Posts"
 msgstr "Inlägg"
-
-msgid "Links"
-msgstr "Länkar"
 
 msgid "Pages"
 msgstr "Sidor"
@@ -123,9 +120,12 @@ msgstr "Användare"
 msgid "Tools"
 msgstr "Verktyg"
 
+msgid "Separator"
+msgstr "Avgränsare"
+
+msgid "Links"
+msgstr "Länkar"
+
 msgid "External Link"
 msgstr "Extern länk"
-
-msgid "Icons"
-msgstr "Ikoner"
 
