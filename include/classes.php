@@ -2,11 +2,10 @@
 
 class mf_internal_pages
 {
-	function __construct()
-	{
-		$this->post_type = 'int_page';
-		$this->meta_prefix = 'myip_';
-	}
+	var $post_type = 'int_page';
+	var $meta_prefix = 'myip_';
+
+	function __construct(){}
 
 	function init()
 	{
@@ -421,36 +420,6 @@ class mf_internal_pages
 
 		return $post_types;
 	}
-
-	/*function wp_head()
-	{
-		global $post;
-
-		if(isset($post->post_type) && $post->post_type == $this->post_type)
-		{
-			$plugin_include_url = plugin_dir_url(__FILE__);
-			$plugin_version = get_plugin_version(__FILE__);
-
-			// The files does not even exist so why try using it???
-			mf_enqueue_style('style_internal_pages', $plugin_include_url."style.css", $plugin_version);
-		}
-	}*/
-
-	// This can't be verified here either, only admins are displayed as logged in
-	/*function the_content($html)
-	{
-		global $post;
-
-		if(isset($post->post_type) && $post->post_type == $this->post_type)
-		{
-			if(is_user_logged_in() == false)
-			{
-				mf_redirect(wp_login_url()."?redirect_to=".$_SERVER['REQUEST_URI']);
-			}
-		}
-
-		return $html;
-	}*/
 
 	function init_base_admin($arr_views, $data = array())
 	{
