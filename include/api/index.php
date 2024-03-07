@@ -9,8 +9,6 @@ if(!defined('ABSPATH'))
 	require_once($folder."wp-load.php");
 }
 
-//do_action('run_cache', array('suffix' => 'json'));
-
 $json_output = array(
 	'success' => false,
 );
