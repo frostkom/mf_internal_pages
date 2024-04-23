@@ -190,6 +190,7 @@ class mf_internal_pages
 			$obj_base = new mf_base();
 		}
 
+		//$post_id = check_var('post');
 		$post_id = get_rwmb_post_id(array(
 			'meta_key' => 'meta_internal_pages_last_id',
 		));
