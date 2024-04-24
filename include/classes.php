@@ -190,7 +190,6 @@ class mf_internal_pages
 			$obj_base = new mf_base();
 		}
 
-		//$post_id = check_var('post');
 		$post_id = get_rwmb_post_id(array(
 			'meta_key' => 'meta_internal_pages_last_id',
 		));
@@ -199,14 +198,14 @@ class mf_internal_pages
 
 		$arr_fields = array();
 
-		$arr_roles = get_all_roles(); //array('denied' => array('administrator'))
+		$arr_roles = get_all_roles();
 
 		if(count($arr_roles) > 0)
 		{
 			$arr_fields[] = array(
 				'name' => __("Roles", 'lang_int_page'),
 				'id' => $this->meta_prefix.'roles',
-				'type' => 'select3',
+				'type' => 'select',
 				'options' => $arr_roles,
 				'multiple' => true,
 				'attributes' => array(
