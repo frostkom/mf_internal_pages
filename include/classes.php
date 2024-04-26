@@ -129,6 +129,16 @@ class mf_internal_pages
 		}
 	}
 
+	function filter_sites_table_pages($arr_pages)
+	{
+		$arr_pages[$this->post_type] = array(
+			'icon' => "fas fa-copy",
+			'title' => __("Internal Pages", 'lang_internal_pages'),
+		);
+
+		return $arr_pages;
+	}
+
 	function get_post_information($data)
 	{
 		global $wpdb;
