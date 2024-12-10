@@ -9,6 +9,8 @@ class mf_internal_pages
 
 	function init()
 	{
+		load_plugin_textdomain('lang_int_page', false, str_replace("/include", "", dirname(plugin_basename(__FILE__)))."/lang/");
+
 		$labels = array(
 			'name' => _x(__("Internal Pages", 'lang_int_page'), 'post type general name'),
 			'menu_name' => __("Internal Pages", 'lang_int_page')
@@ -341,21 +343,21 @@ class mf_internal_pages
 		return $cols;
 	}
 
-	function column_cell($col, $id)
+	function column_cell($col, $post_id)
 	{
 		switch($col)
 		{
 			case 'information':
-				$post_parent = mf_get_post_content($id, 'post_parent');
+				$post_parent = mf_get_post_content($post_id, 'post_parent');
 
-				$post_meta_external_link = get_post_meta($id, $this->meta_prefix.'external_link', true);
+				$post_meta_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
 
 				echo "<div class='flex_flow tight'>";
 
 					if($post_parent == 0)
 					{
-						$post_meta_front_end_icon = get_post_meta($id, $this->meta_prefix.'front_end_icon', true);
-						$post_meta_icon = get_post_meta($id, $this->meta_prefix.'icon', true);
+						$post_meta_front_end_icon = get_post_meta($post_id, $this->meta_prefix.'front_end_icon', true);
+						$post_meta_icon = get_post_meta($post_id, $this->meta_prefix.'icon', true);
 
 						if($post_meta_front_end_icon != '')
 						{
@@ -377,7 +379,7 @@ class mf_internal_pages
 			break;
 
 			case 'roles':
-				$post_meta_roles = get_post_meta($id, $this->meta_prefix.$col, false);
+				$post_meta_roles = get_post_meta($post_id, $this->meta_prefix.$col, false);
 
 				$arr_data = get_roles_for_select(array('add_choose_here' => false, 'use_capability' => false));
 
@@ -405,11 +407,11 @@ class mf_internal_pages
 			break;
 
 			case 'position':
-				$post_parent = mf_get_post_content($id, 'post_parent');
+				$post_parent = mf_get_post_content($post_id, 'post_parent');
 
 				if($post_parent == 0)
 				{
-					$post_meta = get_post_meta($id, $this->meta_prefix.$col, true);
+					$post_meta = get_post_meta($post_id, $this->meta_prefix.$col, true);
 
 					echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
 				}
