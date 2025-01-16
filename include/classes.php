@@ -442,11 +442,10 @@ class mf_internal_pages
 
 		$templates = "";
 		$plugin_include_url = plugin_dir_url(__FILE__);
-		$plugin_version = get_plugin_version(__FILE__);
 
 		if($data['init'] == true)
 		{
-			mf_enqueue_style('style_internal_pages_admin', $plugin_include_url."style_admin.css", $plugin_version);
+			mf_enqueue_style('style_internal_pages_admin', $plugin_include_url."style_admin.css");
 
 			$templates .= "<script type='text/template' id='template_admin_internal'>
 				<%= output %>
