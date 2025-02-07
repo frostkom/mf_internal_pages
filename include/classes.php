@@ -193,6 +193,25 @@ class mf_internal_pages
 		}
 	}
 
+	function get_rwmb_post_id($data)
+	{
+		if(!isset($data['user_id'])){		$data['user_id'] = get_current_user_id();}
+
+		$post_id = check_var('post', 'int');
+
+		if($post_id > 0)
+		{
+			update_user_meta($data['user_id'], $data['meta_key'], $post_id);
+		}
+
+		else
+		{
+			$post_id = get_user_meta($data['user_id'], $data['meta_key'], true);
+		}
+
+		return $post_id;
+	}
+
 	function rwmb_meta_boxes($meta_boxes)
 	{
 		global $obj_base;
@@ -202,7 +221,7 @@ class mf_internal_pages
 			$obj_base = new mf_base();
 		}
 
-		$post_id = get_rwmb_post_id(array(
+		$post_id = $this->get_rwmb_post_id(array(
 			'meta_key' => 'meta_internal_pages_last_id',
 		));
 
