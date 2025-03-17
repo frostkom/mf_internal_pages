@@ -11,13 +11,13 @@ class mf_internal_pages
 	{
 		load_plugin_textdomain('lang_int_page', false, str_replace("/include", "", dirname(plugin_basename(__FILE__)))."/lang/");
 
-		$labels = array(
-			'name' => _x(__("Internal Pages", 'lang_int_page'), 'post type general name'),
-			'menu_name' => __("Internal Pages", 'lang_int_page')
-		);
-
-		$args = array(
-			'labels' => $labels,
+		// Post types
+		#######################
+		register_post_type($this->post_type, array(
+			'labels' => array(
+				'name' => _x(__("Internal Pages", 'lang_int_page'), 'post type general name'),
+				'menu_name' => __("Internal Pages", 'lang_int_page')
+			),
 			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved because non-admins was not displayed as logged in att this moment
 			'show_in_menu' => false,
 			'show_in_nav_menus' => false,
@@ -26,9 +26,8 @@ class mf_internal_pages
 			'supports' => array('title', 'editor', 'page-attributes'),
 			'capability_type' => 'page',
 			'hierarchical' => true,
-		);
-
-		register_post_type($this->post_type, $args);
+		));
+		#######################
 	}
 
 	function get_admin_menu_items()
