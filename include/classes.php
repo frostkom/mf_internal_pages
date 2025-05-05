@@ -90,7 +90,7 @@ class mf_internal_pages
 	{
 		$menu_root = "mf_internal_pages/";
 		$menu_start = $menu_root.'list/index.php';
-		$menu_capability = override_capability(array('page' => $menu_start, 'default' => 'edit_pages'));
+		$menu_capability = 'edit_pages';
 
 		$menu_title = __("Internal Pages", 'lang_int_page');
 		add_submenu_page("index.php", $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type);
