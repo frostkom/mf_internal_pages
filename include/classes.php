@@ -350,20 +350,20 @@ class mf_internal_pages
 		return $meta_boxes;
 	}
 
-	function column_header($cols)
+	function column_header($columns)
 	{
-		unset($cols['date']);
+		unset($columns['date']);
 
-		$cols['information'] = __("Information", 'lang_int_page');
-		$cols['roles'] = __("Roles", 'lang_int_page');
-		$cols['position'] = __("Position", 'lang_int_page');
+		$columns['information'] = __("Information", 'lang_int_page');
+		$columns['roles'] = __("Roles", 'lang_int_page');
+		$columns['position'] = __("Position", 'lang_int_page');
 
-		return $cols;
+		return $columns;
 	}
 
-	function column_cell($col, $post_id)
+	function column_cell($column, $post_id)
 	{
-		switch($col)
+		switch($column)
 		{
 			case 'information':
 				$post_parent = mf_get_post_content($post_id, 'post_parent');
@@ -397,7 +397,7 @@ class mf_internal_pages
 			break;
 
 			case 'roles':
-				$post_meta_roles = get_post_meta($post_id, $this->meta_prefix.$col, false);
+				$post_meta_roles = get_post_meta($post_id, $this->meta_prefix.$column, false);
 
 				$arr_data = get_roles_for_select(array('add_choose_here' => false, 'use_capability' => false));
 
@@ -429,7 +429,7 @@ class mf_internal_pages
 
 				if($post_parent == 0)
 				{
-					$post_meta = get_post_meta($post_id, $this->meta_prefix.$col, true);
+					$post_meta = get_post_meta($post_id, $this->meta_prefix.$column, true);
 
 					echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
 				}
