@@ -21,6 +21,7 @@ class mf_internal_pages
 			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved because non-admins was not displayed as logged in att this moment
 			'show_in_menu' => false,
 			'show_in_nav_menus' => false,
+			'show_in_rest' => true,
 			'exclude_from_search' => true,
 			//'menu_position' => 100,
 			'supports' => array('title', 'editor', 'page-attributes'),
