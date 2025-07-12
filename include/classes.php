@@ -15,7 +15,7 @@ class mf_internal_pages
 		#######################
 		register_post_type($this->post_type, array(
 			'labels' => array(
-				'name' => _x(__("Internal Pages", 'lang_int_page'), 'post type general name'),
+				'name' => __("Internal Pages", 'lang_int_page'),
 				'menu_name' => __("Internal Pages", 'lang_int_page')
 			),
 			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved because non-admins was not displayed as logged in att this moment
