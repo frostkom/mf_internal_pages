@@ -3,12 +3,14 @@
 Plugin Name: MF Internal Pages
 Plugin URI: https://github.com/frostkom/mf_internal_pages
 Description:
-Version: 2.5.27
+Version: 2.5.28
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
 Text Domain: lang_int_page
 Domain Path: /lang
+
+Requires Plugins: meta-box
 */
 
 if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') && is_plugin_active("mf_base/index.php"))
@@ -21,7 +23,6 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 
 	if(is_admin())
 	{
-		register_activation_hook(__FILE__, 'activate_int_page');
 		register_uninstall_hook(__FILE__, 'uninstall_int_page');
 
 		add_action('admin_menu', array($obj_internal_pages, 'admin_menu'));
@@ -42,11 +43,6 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	}
 
 	//add_filter('init_base_admin', array($obj_internal_pages, 'init_base_admin'), 10, 2);
-
-	function activate_int_page()
-	{
-		require_plugin("meta-box/meta-box.php", "Meta Box");
-	}
 
 	function uninstall_int_page()
 	{
