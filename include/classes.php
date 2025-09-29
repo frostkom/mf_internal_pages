@@ -16,7 +16,12 @@ class mf_internal_pages
 		register_post_type($this->post_type, array(
 			'labels' => array(
 				'name' => __("Internal Pages", 'lang_int_page'),
-				'menu_name' => __("Internal Pages", 'lang_int_page')
+				'singular_name' => __("Internal Page", 'lang_int_page'),
+				'menu_name' => __("Internal Pages", 'lang_int_page'),
+				'all_items' => __('List', 'lang_int_page'),
+				'edit_item' => __('Edit', 'lang_int_page'),
+				'view_item' => __('View', 'lang_int_page'),
+				'add_new_item' => __('Add New', 'lang_int_page'),
 			),
 			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved because non-admins was not displayed as logged in att this moment
 			'show_in_menu' => false,
