@@ -23,7 +23,8 @@ class mf_internal_pages
 				'view_item' => __('View', 'lang_int_page'),
 				'add_new_item' => __('Add New', 'lang_int_page'),
 			),
-			'public' => true, // is_user_logged_in() removed because it didn't work with payment forms on the page. I.e. accept from payment provider wasn't saved because non-admins was not displayed as logged in att this moment
+			'public' => false,
+			'show_ui' => true,
 			'show_in_menu' => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest' => true,
@@ -289,6 +290,7 @@ class mf_internal_pages
 					'dashicons-plus-alt' => __("Plus", 'lang_int_page'),
 					'dashicons-phone' => __("Phone", 'lang_int_page'),
 					'dashicons-shield' => __("Security", 'lang_int_page'),
+					'dashicons-sos' => __("SOS", 'lang_int_page'),
 					'dashicons-admin-generic' => __("Settings", 'lang_int_page')." (".__("Default", 'lang_int_page').")",
 					'dashicons-tickets' => __("Tickets", 'lang_int_page'),
 					'dashicons-unlock' => __("Unlock", 'lang_int_page'),
