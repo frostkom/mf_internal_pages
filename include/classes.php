@@ -113,7 +113,7 @@ class mf_internal_pages
 
 			if(count($menu_item['children']) > 0)
 			{
-				if(mf_get_post_content($menu_key) == '') // To hide the first empty submenu page in the menu system
+				if(get_post_field('post_content', $menu_key) == '') // To hide the first empty submenu page in the menu system
 				{
 					$child_first_key = key($menu_item['children']);
 
@@ -231,7 +231,7 @@ class mf_internal_pages
 			'meta_key' => 'meta_internal_pages_last_id',
 		));
 
-		$post_parent = ($post_id > 0 ? mf_get_post_content($post_id, 'post_parent') : 0);
+		$post_parent = ($post_id > 0 ? get_post_field('post_parent', $post_id) : 0);
 
 		$arr_fields = array();
 
@@ -374,7 +374,7 @@ class mf_internal_pages
 		switch($column)
 		{
 			case 'information':
-				$post_parent = mf_get_post_content($post_id, 'post_parent');
+				$post_parent = get_post_field('post_parent', $post_id);
 
 				$post_meta_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
 
@@ -433,7 +433,7 @@ class mf_internal_pages
 			break;
 
 			case 'position':
-				$post_parent = mf_get_post_content($post_id, 'post_parent');
+				$post_parent = get_post_field('post_parent', $post_id);
 
 				if($post_parent == 0)
 				{
