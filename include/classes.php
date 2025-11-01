@@ -227,6 +227,8 @@ class mf_internal_pages
 			$obj_base = new mf_base();
 		}
 
+		do_action('load_font_awesome');
+
 		$post_id = $this->get_rwmb_post_id(array(
 			'meta_key' => 'meta_internal_pages_last_id',
 		));
@@ -361,6 +363,8 @@ class mf_internal_pages
 	function column_header($columns)
 	{
 		unset($columns['date']);
+
+		do_action('load_font_awesome');
 
 		$columns['information'] = __("Information", 'lang_int_page');
 		$columns['roles'] = __("Roles", 'lang_int_page');
