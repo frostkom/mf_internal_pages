@@ -378,7 +378,7 @@ class mf_internal_pages
 
 				$post_meta_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
 
-				echo "<div class='flex_flow tight'>";
+				echo "<div".apply_filters('get_flex_flow', "", ['class' => ['tight']]).">";
 
 					if($post_parent == 0)
 					{
