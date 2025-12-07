@@ -375,75 +375,82 @@ class mf_internal_pages
 
 	function column_cell($column, $post_id)
 	{
-		switch($column)
+		global $post;
+
+		switch($post->post_type)
 		{
-			case 'information':
-				$post_parent = get_post_field('post_parent', $post_id);
+			case $this->post_type:
+				switch($column)
+				{
+					case 'information':
+						$post_parent = get_post_field('post_parent', $post_id);
 
-				$post_meta_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
+						$post_meta_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
 
-				echo "<div".apply_filters('get_flex_flow', "", ['class' => ['tight']]).">";
+						echo "<div".apply_filters('get_flex_flow', "", ['class' => ['tight']]).">";
 
-					if($post_parent == 0)
-					{
-						$post_meta_front_end_icon = get_post_meta($post_id, $this->meta_prefix.'front_end_icon', true);
-						$post_meta_icon = get_post_meta($post_id, $this->meta_prefix.'icon', true);
+							if($post_parent == 0)
+							{
+								$post_meta_front_end_icon = get_post_meta($post_id, $this->meta_prefix.'front_end_icon', true);
+								$post_meta_icon = get_post_meta($post_id, $this->meta_prefix.'icon', true);
 
-						if($post_meta_front_end_icon != '')
+								if($post_meta_front_end_icon != '')
+								{
+									echo "<div><i class='".$post_meta_front_end_icon." fa-lg'></i></div>";
+								}
+
+								if($post_meta_icon != '')
+								{
+									echo "<div><div class='dashicons-before ".$post_meta_icon."'><br></div></div>";
+								}
+							}
+
+							if($post_meta_external_link != '')
+							{
+								echo "<a href='".$post_meta_external_link."'><i class='fa fa-link'></i></a>";
+							}
+
+						echo "</div>";
+					break;
+
+					case 'roles':
+						$post_meta_roles = get_post_meta($post_id, $this->meta_prefix.$column, false);
+
+						$arr_data = get_roles_for_select(array('add_choose_here' => false, 'use_capability' => false));
+
+						$arr_roles = array();
+
+						foreach($arr_data as $key => $value)
 						{
-							echo "<div><i class='".$post_meta_front_end_icon." fa-lg'></i></div>";
+							if(in_array($key, $post_meta_roles))
+							{
+								$arr_roles[] = $value;
+							}
 						}
 
-						if($post_meta_icon != '')
+						$count_temp = count($arr_roles);
+
+						if($count_temp > 1)
 						{
-							echo "<div><div class='dashicons-before ".$post_meta_icon."'><br></div></div>";
+							echo "<span title='".implode(", ", $arr_roles)."'>".$count_temp."</span>";
 						}
-					}
 
-					if($post_meta_external_link != '')
-					{
-						echo "<a href='".$post_meta_external_link."'><i class='fa fa-link'></i></a>";
-					}
+						else
+						{
+							echo implode(", ", $arr_roles);
+						}
+					break;
 
-				echo "</div>";
-			break;
+					case 'position':
+						$post_parent = get_post_field('post_parent', $post_id);
 
-			case 'roles':
-				$post_meta_roles = get_post_meta($post_id, $this->meta_prefix.$column, false);
+						if($post_parent == 0)
+						{
+							$post_meta = get_post_meta($post_id, $this->meta_prefix.$column, true);
 
-				$arr_data = get_roles_for_select(array('add_choose_here' => false, 'use_capability' => false));
-
-				$arr_roles = array();
-
-				foreach($arr_data as $key => $value)
-				{
-					if(in_array($key, $post_meta_roles))
-					{
-						$arr_roles[] = $value;
-					}
-				}
-
-				$count_temp = count($arr_roles);
-
-				if($count_temp > 1)
-				{
-					echo "<span title='".implode(", ", $arr_roles)."'>".$count_temp."</span>";
-				}
-
-				else
-				{
-					echo implode(", ", $arr_roles);
-				}
-			break;
-
-			case 'position':
-				$post_parent = get_post_field('post_parent', $post_id);
-
-				if($post_parent == 0)
-				{
-					$post_meta = get_post_meta($post_id, $this->meta_prefix.$column, true);
-
-					echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
+							echo $post_meta != '' ? $post_meta : "<span class='grey'>100</span>";
+						}
+					break;
 				}
 			break;
 		}
