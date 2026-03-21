@@ -46,7 +46,6 @@ switch($arr_type[1])
 					'template' => str_replace("/", "_", $type_switch),
 					'container' => str_replace("/", "_", $type),
 					'output' => apply_filters('the_content', $post_information['post_content']),
-					//'timestamp' => date("Y-m-d H:i:s"),
 				);
 			}
 
